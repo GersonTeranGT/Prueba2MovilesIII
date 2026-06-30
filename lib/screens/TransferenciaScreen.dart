@@ -89,8 +89,8 @@ class TransferenciasWidgetState extends State<TransferenciasWidget> {
   final DatabaseReference db = FirebaseDatabase.instance.ref();
 
   void guardarTransferencia() async {
-    if (idTransferencia.text.isEmpty || 
-        destinatario.text.isEmpty || 
+    if (idTransferencia.text.isEmpty ||
+        destinatario.text.isEmpty ||
         monto.text.isEmpty) {
       showDialog(
         context: context,
@@ -293,29 +293,32 @@ class DepositosWidgetState extends State<DepositosWidget> {
             child: cargando
                 ? const Center(child: CircularProgressIndicator())
                 : depositos.isEmpty
-                    ? const Center(child: Text("No hay depósitos"))
-                    : ListView.builder(
-                        itemCount: depositos.length,
-                        itemBuilder: (context, index) {
-                          final item = depositos[index];
-                          return Card(
-                            child: ListTile(
-                              leading: Image.network(
-                                item['detalles']['imagen_comprobante'],
-                                width: 50,
-                                height: 50,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(Icons.account_balance, size: 40);
-                                },
-                              ),
-                              title: Text("\$ ${item['monto']}"),
-                              subtitle: Text(item['banco']),
-                              onTap: () => verDetalles(context, item),
-                            ),
-                          );
-                        },
-                      ),
+                ? const Center(child: Text("No hay depósitos"))
+                : ListView.builder(
+                    itemCount: depositos.length,
+                    itemBuilder: (context, index) {
+                      final item = depositos[index];
+                      return Card(
+                        child: ListTile(
+                          leading: Image.network(
+                            item['detalles']['imagen_comprobante'],
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Icon(
+                                Icons.account_balance,
+                                size: 40,
+                              );
+                            },
+                          ),
+                          title: Text("\$ ${item['monto']}"),
+                          subtitle: Text(item['banco']),
+                          onTap: () => verDetalles(context, item),
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
       ),

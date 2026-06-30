@@ -79,9 +79,7 @@ class TransferenciasWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Transferencias"),
-    );
+    return const Center(child: Text("Transferencias"));
   }
 }
 
@@ -188,31 +186,34 @@ class DepositosWidgetState extends State<DepositosWidget> {
             child: cargando
                 ? const Center(child: CircularProgressIndicator())
                 : error.isNotEmpty
-                    ? Center(child: Text(error))
-                    : depositos.isEmpty
-                        ? const Center(child: Text("No hay depósitos"))
-                        : ListView.builder(
-                            itemCount: depositos.length,
-                            itemBuilder: (context, index) {
-                              final item = depositos[index];
-                              return Card(
-                                child: ListTile(
-                                  leading: Image.network(
-                                    item['detalles']['imagen_comprobante'],
-                                    width: 50,
-                                    height: 50,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return const Icon(Icons.account_balance, size: 40);
-                                    },
-                                  ),
-                                  title: Text("S/. ${item['monto']}"),
-                                  subtitle: Text(item['banco']),
-                                  onTap: () => verDetalles(context, item),
-                                ),
+                ? Center(child: Text(error))
+                : depositos.isEmpty
+                ? const Center(child: Text("No hay depósitos"))
+                : ListView.builder(
+                    itemCount: depositos.length,
+                    itemBuilder: (context, index) {
+                      final item = depositos[index];
+                      return Card(
+                        child: ListTile(
+                          leading: Image.network(
+                            item['detalles']['imagen_comprobante'],
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Icon(
+                                Icons.account_balance,
+                                size: 40,
                               );
                             },
                           ),
+                          title: Text("S/. ${item['monto']}"),
+                          subtitle: Text(item['banco']),
+                          onTap: () => verDetalles(context, item),
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
       ),

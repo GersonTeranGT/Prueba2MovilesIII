@@ -7,9 +7,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Login"),
-      ),
+      appBar: AppBar(title: const Text("Login")),
       body: Center(child: Container(width: 300, child: formulario(context))),
     );
   }
@@ -64,13 +62,13 @@ Future<void> login(context, correo, contrasenia) async {
   try {
     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: correo.text,
-      password: contrasenia.text
+      password: contrasenia.text,
     );
 
     Navigator.pushNamed(context, "/transferencias");
   } on FirebaseAuthException catch (e) {
     String mensaje = "Error al iniciar sesión";
-    
+
     if (e.code == 'user-not-found') {
       mensaje = "Usuario no encontrado";
     } else if (e.code == 'wrong-password') {

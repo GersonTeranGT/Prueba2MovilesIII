@@ -7,9 +7,7 @@ class RegistroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Registro"),
-      ),
+      appBar: AppBar(title: const Text("Registro")),
       body: Center(child: Container(width: 300, child: formulario(context))),
     );
   }
@@ -24,13 +22,26 @@ Widget formulario(context) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      TextField(controller: nombre, decoration: const InputDecoration(labelText: "Nombre")),
+      TextField(
+        controller: nombre,
+        decoration: const InputDecoration(labelText: "Nombre"),
+      ),
       const SizedBox(height: 10),
-      TextField(controller: telefono, decoration: const InputDecoration(labelText: "Teléfono")),
+      TextField(
+        controller: telefono,
+        decoration: const InputDecoration(labelText: "Teléfono"),
+      ),
       const SizedBox(height: 10),
-      TextField(controller: correo, decoration: const InputDecoration(labelText: "Correo")),
+      TextField(
+        controller: correo,
+        decoration: const InputDecoration(labelText: "Correo"),
+      ),
       const SizedBox(height: 10),
-      TextField(controller: contrasenia, decoration: const InputDecoration(labelText: "Contraseña"), obscureText: true),
+      TextField(
+        controller: contrasenia,
+        decoration: const InputDecoration(labelText: "Contraseña"),
+        obscureText: true,
+      ),
       const SizedBox(height: 20),
       FilledButton.icon(
         onPressed: () => registro(context, correo, contrasenia),
@@ -69,7 +80,7 @@ Future<void> registro(context, correo, contrasenia) async {
     Navigator.pushNamed(context, "/login");
   } on FirebaseAuthException catch (e) {
     String mensaje = "Error en el registro";
-    
+
     if (e.code == 'weak-password') {
       mensaje = "La contraseña es muy débil";
     } else if (e.code == 'email-already-in-use') {

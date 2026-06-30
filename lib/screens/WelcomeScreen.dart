@@ -14,10 +14,7 @@ class WelcomeScreen extends StatelessWidget {
             children: [
               const Text(
                 "Banco App",
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
               const Text("Tu banco de confianza"),
@@ -34,10 +31,7 @@ class WelcomeScreen extends StatelessWidget {
               const SizedBox(height: 40),
               const Column(
                 children: [
-                  Text(
-                    "Desarrollado por:",
-                    style: TextStyle(fontSize: 12),
-                  ),
+                  Text("Desarrollado por:", style: TextStyle(fontSize: 12)),
                   Text(
                     "Gerson Teran",
                     style: TextStyle(fontWeight: FontWeight.bold),
