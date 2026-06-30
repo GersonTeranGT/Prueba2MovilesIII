@@ -77,10 +77,6 @@ Future<void> login(context, correo, contrasenia) async {
       mensaje = "Contraseña incorrecta";
     } else if (e.code == 'invalid-email') {
       mensaje = "Correo electrónico no válido";
-    } else if (e.code == 'user-disabled') {
-      mensaje = "Esta cuenta ha sido deshabilitada";
-    } else if (e.code == 'too-many-requests') {
-      mensaje = "Demasiados intentos. Intente más tarde";
     } else {
       mensaje = "Error: ${e.code}";
     }
